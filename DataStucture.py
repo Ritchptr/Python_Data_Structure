@@ -1,3 +1,5 @@
+import random as rdm
+
 class Double_LIngked_List:
     class node:
         def __init__(self, value = 0, next = None, prev = None):
@@ -20,7 +22,7 @@ class Double_LIngked_List:
             return
         
         current = self.head
-        while current.next and current.next.value:
+        while current.next and current.next.value < value:
             current = current.next
         
         newnode.next = current.next
@@ -67,5 +69,25 @@ class Double_LIngked_List:
                 print(current.value)
             current = current.next
 
+class Run:
+    def DLL():
+        Sorted = Double_LIngked_List()
+
+        length = int(input("Input the length of the list: "))
+
+        for i in range(length):
+            value = rdm.randint(1, 100)
+            Sorted.pushh(value)
+        
+        Sorted.display()
+        remove = int(input("Delete One!: "))
+        x = Sorted.pop(remove)
+        if x:
+            print(f"You have successfully delete {x}!")
+            Sorted.display()
+
+
+Run.DLL()
+        
 
             
