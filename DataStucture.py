@@ -69,6 +69,49 @@ class Double_LIngked_List:
                 print(current.value)
             current = current.next
 
+class BinaryTree:
+    class Node:
+        def __init__(self, value):
+            self.value = value
+            self.right = None
+            self.left = None
+    
+    def __init__(self):
+        self.root = None
+
+    def insert(self, value):
+        if not self.root:
+            self.root = BinaryTree.Node(value)
+            return 
+        self.root = self._insert_recursive(self.root, value)
+    
+    def _insert_recursive(self, node, value):
+        if value < node.value:
+            if not node.left:
+                node.left = BinaryTree.Node(value)
+            else:
+                self._insert_recursive(node.left, value)
+        else:
+            if not node.right:
+                node.right = BinaryTree.Node(value)
+            else:
+                self._insert_recursive(node.right, value)
+        return node
+
+    def display(self):
+        if not self.root:
+            print("Tree is Empty!")
+            return None
+        self._inorder_traversal(self.root)
+        print()
+
+    def _inorder_traversal(self, node):
+        if node:
+            self._inorder_traversal(node.left)
+            print(node.value, end= " ")
+            self._inorder_traversal(node.right)
+            
+
 class Run:
     def DLL():
         Sorted = Double_LIngked_List()
@@ -86,8 +129,19 @@ class Run:
             print(f"You have successfully delete {x}!")
             Sorted.display()
 
+    def BT():
+        root = BinaryTree()
+        length = int(input("Input the number of the tree: "))
 
-Run.DLL()
+        for i in range(length):
+            value = rdm.randint(1, 100)
+            root.insert(value)
+        
+        root.display()
+
+
+# Run.DLL()
+Run.BT()
         
 
             
