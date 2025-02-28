@@ -98,6 +98,53 @@ class BinaryTree:
                 self._insert_recursive(node.right, value)
         return node
 
+    def search(self, value):
+        if not self.root:
+            print("Tree is Empty!")
+            return
+        return self._search_recursive(self.root, value)
+
+    def _search_recursive(self, node, value):
+        if not node or node.value == value:
+            return node.value
+        if value < node.value:
+            return self._search_recursive(node.left, value)
+        return self._search_recursive(node.right, value)
+
+
+    def delete(self, value):
+        self.root = self._delete_recursive(self.root, value)
+    
+    def _delete_recursive(self, node, value):
+
+        if not node:
+            print("Value Not Found!")
+            return None
+        
+        if value < node.value:
+            node.left = self._delete_recursive(node.left, value)
+        elif value > node.value:
+            node.right = self._delete_recursive(node.right, value)
+        else:
+            if not node.right and not node.left:
+                return None
+            elif node.left and node.right:
+                temp = self._max_(node.left)
+                node.value = temp.value
+                node.left = self._delete_recursive(node.left, temp.value)
+            elif node.right:
+                return node.right
+            elif node.left:
+                return node.left
+        return node
+
+    def _max_(self, node):
+        current = node
+        while current.right:
+            current = current.right
+        return current
+                 
+
     def display(self):
         if not self.root:
             print("Tree is Empty!")
@@ -138,6 +185,14 @@ class Run:
             root.insert(value)
         
         root.display()
+
+        remove = int(input("Delete One!: "))
+        x = root.search(remove)
+        root.delete(remove)
+        if x:
+            print(f"You have successfully delete {x}!")
+            root.display()
+        # root.display()
 
 
 # Run.DLL()
