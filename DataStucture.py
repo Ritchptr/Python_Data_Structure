@@ -1,5 +1,3 @@
-import random as rdm
-
 class Double_LIngked_List:
     class node:
         def __init__(self, value = 0, next = None, prev = None):
@@ -100,14 +98,15 @@ class BinaryTree:
 
     def search(self, value):
         if not self.root:
-            print("Tree is Empty!")
-            return
+            return None
         return self._search_recursive(self.root, value)
 
     def _search_recursive(self, node, value):
-        if not node or node.value == value:
+        if not node :
+            return None
+        elif node.value == value:
             return node.value
-        if value < node.value:
+        elif value < node.value:
             return self._search_recursive(node.left, value)
         return self._search_recursive(node.right, value)
 
@@ -157,46 +156,4 @@ class BinaryTree:
             self._inorder_traversal(node.left)
             print(node.value, end= " ")
             self._inorder_traversal(node.right)
-            
-
-class Run:
-    def DLL():
-        Sorted = Double_LIngked_List()
-
-        length = int(input("Input the length of the list: "))
-
-        for i in range(length):
-            value = rdm.randint(1, 100)
-            Sorted.pushh(value)
-        
-        Sorted.display()
-        remove = int(input("Delete One!: "))
-        x = Sorted.pop(remove)
-        if x:
-            print(f"You have successfully delete {x}!")
-            Sorted.display()
-
-    def BT():
-        root = BinaryTree()
-        length = int(input("Input the number of the tree: "))
-
-        for i in range(length):
-            value = rdm.randint(1, 100)
-            root.insert(value)
-        
-        root.display()
-
-        remove = int(input("Delete One!: "))
-        x = root.search(remove)
-        root.delete(remove)
-        if x:
-            print(f"You have successfully delete {x}!")
-            root.display()
-        # root.display()
-
-
-# Run.DLL()
-Run.BT()
-        
-
-            
+ 
