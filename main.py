@@ -58,7 +58,10 @@ def main():
             print("Thank You!")
             break
         else:
-            print("Enter the corret number!")
+            print("Enter the corret number! (0/1/2)")
+            print()
 
-
-main()
+try:
+    main()
+except ValueError:
+    print("Value Eror")
